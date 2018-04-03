@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Drawing.Text;
 using System.Linq;
 using System.Text;
@@ -58,6 +59,29 @@ namespace ToolCode
             useGraphic.Dispose();
 
             return useBitMap;
+        }
+
+        /// <summary>
+        /// 调整透明度
+        /// </summary>
+        /// <param name="inputImage"></param>
+        /// <param name="useAlapha"></param>
+        /// <returns></returns>
+        public static Bitmap AdjustImageAlapha(Bitmap inputImage, int useAlapha = 100)
+        {
+
+            Bitmap useImage = new Bitmap(inputImage.Width, inputImage.Height, PixelFormat.Format32bppArgb);
+            for (int h = 0; h < inputImage.Height; h++)
+            {
+                for (int w = 0; w < inputImage.Width; w++)
+                {
+                    Color c = inputImage.GetPixel(w, h);
+                    useImage.SetPixel(w, h, Color.FromArgb(useAlapha, c.R, c.G, c.B));
+                }
+            }
+
+            return useImage;
+
         }
     }
 }
