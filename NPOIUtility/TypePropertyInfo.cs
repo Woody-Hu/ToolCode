@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using NPOI.SS.UserModel;
 
 namespace NPOIUtility
 {
@@ -60,6 +61,15 @@ namespace NPOIUtility
         }
 
         /// <summary>
+        /// 使用的列索引
+        /// </summary>
+        internal int UseColumnIndex
+        {
+            get { return m_useColumnIndex; }
+            set { m_useColumnIndex = value; }
+        }
+
+        /// <summary>
         /// 检查属性是否可用
         /// </summary>
         /// <param name="inputPropertyInfo"></param>
@@ -69,6 +79,25 @@ namespace NPOIUtility
             //获取属性类型
             var propertyType = inputPropertyInfo.PropertyType;
             return m_useStringType != inputPropertyInfo && null == propertyType.GetMethod(m_useParseMethodName,BindingFlags.Static|BindingFlags.Public);
+        }
+
+        /// <summary>
+        /// 准备数据
+        /// </summary>
+        /// <param name="inputSheet"></param>
+        /// <param name="inputClassAttribute"></param>
+        /// <param name="headerRowIndex"></param>
+        internal void PrepareData(ISheet inputSheet,ClassAttribute inputClassAttribute,out int headerRowIndex)
+        {
+            headerRowIndex = 0;
+
+            //已赋值列索引
+            if (null != m_usePropertyAttribute.UseColumnIndex)
+            {
+                m_useColumnIndex = m_usePropertyAttribute.UseColumnIndex.Value;
+                return;
+            }
+
         }
 
         /// <summary>

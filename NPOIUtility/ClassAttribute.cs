@@ -27,6 +27,9 @@ namespace NPOIUtility
         /// </summary>
         private int? m_headerLimitRowIndex = null;
 
+        /// <summary>
+        /// 使用的表索引
+        /// </summary>
         public int? SheetIndex
         {
             get
@@ -40,6 +43,9 @@ namespace NPOIUtility
             }
         }
 
+        /// <summary>
+        /// 使用的表名
+        /// </summary>
         public string SheetName
         {
             get
@@ -53,6 +59,9 @@ namespace NPOIUtility
             }
         }
 
+        /// <summary>
+        /// 表头列限制
+        /// </summary>
         public int? HeaderLimitRowIndex
         {
             get
