@@ -22,15 +22,6 @@ namespace NPOIUtility
         /// </summary>
         private static Type m_usePropertyAttributeType = typeof(PropertyAttribute);
 
-        /// <summary>
-        /// 使用的字符串类型
-        /// </summary>
-        private static Type m_useStringType = typeof(string);
-
-        /// <summary>
-        /// 粘贴方法名
-        /// </summary>
-        private const string m_useParseMethodName = "Parse";
 
         /// <summary>
         /// 注册一个类
@@ -83,11 +74,9 @@ namespace NPOIUtility
                     continue;
                 }
 
-                //获取属性类型
-                var propertyType = oneProperty.PropertyType;
 
                 //若不是字符串类型且没有粘贴方法
-                if (m_useStringType != propertyType && null == propertyType.GetMethod(m_useParseMethodName))
+                if (TypePropertyInfo.CheckProperty(oneProperty))
                 {
                     continue;
                 }
