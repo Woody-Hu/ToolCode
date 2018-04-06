@@ -97,6 +97,45 @@ namespace NPOIUtility
                 m_useColumnIndex = m_usePropertyAttribute.UseColumnIndex.Value;
                 return;
             }
+            else
+            {
+                int useHeaderLimitRowIndex = 0;
+
+                if (null != inputClassAttribute.HeaderLimitRowIndex)
+                {
+                    useHeaderLimitRowIndex = inputClassAttribute.HeaderLimitRowIndex.Value;
+
+                    //行数保护
+                    useHeaderLimitRowIndex = Math.Min(useHeaderLimitRowIndex, inputSheet.LastRowNum);
+
+                    for (int tempRowIndex = 0; tempRowIndex <= useHeaderLimitRowIndex; tempRowIndex++)
+                    {
+                        //获取行
+                        var tempRow = inputSheet.GetRow(tempRowIndex);
+
+                        for (int tempColumnIndex = 0; tempColumnIndex < tempRow.LastCellNum; tempColumnIndex++)
+                        {
+                            var tempCell = tempRow.GetCell(tempColumnIndex);
+
+                            if (null == tempCell)
+                            {
+                                continue;
+                            }
+
+                            //若字符串匹配
+                            if (tempCell.ToString().Equals(m_usePropertyAttribute.UseColumnName))
+                            {
+                                //列索引赋值
+                                m_useColumnIndex = tempColumnIndex;
+                                //使用行赋值(下一行）
+                                headerRowIndex = tempRowIndex + 1;
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+
 
         }
 

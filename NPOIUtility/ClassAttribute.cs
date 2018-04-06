@@ -28,6 +28,20 @@ namespace NPOIUtility
         private int? m_headerLimitRowIndex = null;
 
         /// <summary>
+        /// 使用的数据起始行索引
+        /// </summary>
+        private int? m_realUseDataStartRowIndex = null;
+
+        /// <summary>
+        /// 使用的数据起始行索引
+        /// </summary>
+        public int? RealUseDataStartRowIndex
+        {
+            get { return m_realUseDataStartRowIndex; }
+            set { m_realUseDataStartRowIndex = value; }
+        }
+
+        /// <summary>
         /// 使用的表索引
         /// </summary>
         public int? SheetIndex

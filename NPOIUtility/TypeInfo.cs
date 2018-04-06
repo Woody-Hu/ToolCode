@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using NPOI.SS.UserModel;
@@ -28,6 +29,11 @@ namespace NPOIUtility
         private int m_dataStartRowNumber = 0;
 
         /// <summary>
+        /// 使用的属性封装
+        /// </summary>
+        private List<TypePropertyInfo> m_lstPropertyInfos = new List<TypePropertyInfo>();
+
+        /// <summary>
         /// 使用的表对象
         /// </summary>
         private ISheet m_useSheet = null;
@@ -37,10 +43,16 @@ namespace NPOIUtility
         /// </summary>
         /// <param name="useType"></param>
         /// <param name="useClassAttribute"></param>
-        internal TypeInfo(Type useType, ClassAttribute useClassAttribute)
+        internal TypeInfo(Type useType, ClassAttribute useClassAttribute,Dictionary<PropertyInfo,PropertyAttribute> inputPropertyMap)
         {
             m_thisType = useType;
             m_useClassAttribute = useClassAttribute;
+            //制备成员
+            foreach (var oneKVP in inputPropertyMap)
+            {
+                m_lstPropertyInfos.Add(new TypePropertyInfo(oneKVP.Key, oneKVP.Value));
+            }
+
         }
 
         /// <summary>
@@ -61,6 +73,21 @@ namespace NPOIUtility
             {
                 m_useSheet = inputWorkbook.GetSheet(m_useClassAttribute.SheetName);
             }
+
+            int useDataRowIndex = 0;
+
+            int tempDataRowIndex = 0;
+
+            //初始化属性封装
+            foreach (var onePropertyInfo in m_lstPropertyInfos)
+            {
+                onePropertyInfo.PrepareData(m_useSheet, this.m_useClassAttribute, out tempDataRowIndex);
+                //使用行冒泡
+                useDataRowIndex = Math.Max(useDataRowIndex, tempDataRowIndex);
+            }
+
+            //设置使用数据起始行号
+            m_dataStartRowNumber = this.m_useClassAttribute.RealUseDataStartRowIndex == null ? useDataRowIndex + 1 : this.m_useClassAttribute.RealUseDataStartRowIndex.Value;
 
         }
 
