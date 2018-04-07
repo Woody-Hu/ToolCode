@@ -65,9 +65,9 @@ namespace NPOIUtility
             m_dataStartRowNumber = 0;
 
             //利用索引
-            if (null != m_useClassAttribute.SheetIndex)
+            if (0 <= m_useClassAttribute.SheetIndex)
             {
-                m_useSheet = inputWorkbook.GetSheetAt(m_useClassAttribute.SheetIndex.Value);
+                m_useSheet = inputWorkbook.GetSheetAt(m_useClassAttribute.SheetIndex);
             }
             else
             {
@@ -87,7 +87,7 @@ namespace NPOIUtility
             }
 
             //设置使用数据起始行号
-            m_dataStartRowNumber = this.m_useClassAttribute.RealUseDataStartRowIndex == null ? useDataRowIndex + 1 : this.m_useClassAttribute.RealUseDataStartRowIndex.Value;
+            m_dataStartRowNumber = this.m_useClassAttribute.RealUseDataStartRowIndex < 0 ? useDataRowIndex : this.m_useClassAttribute.RealUseDataStartRowIndex;
 
         }
 
@@ -98,9 +98,68 @@ namespace NPOIUtility
         /// <returns></returns>
         internal List<object> ReadWorkBook(IWorkbook input)
         {
+            //准备数据
             PrepareData(input);
 
-            return null;
+            int useLength = m_lstPropertyInfos.Count;
+
+            string[] useValues = new string[useLength];
+
+            List<object> returnValues = new List<object>();
+
+
+            //逐行读取
+            for (int useRowIndex = m_dataStartRowNumber; useRowIndex <= m_useSheet.LastRowNum; useRowIndex++)
+            {
+                var useRow = m_useSheet.GetRow(useRowIndex);
+
+                //全Null行
+                if (null == useRow)
+                {
+                    continue;
+                }
+
+                //读取列
+                for (int propertyIndex = 0; propertyIndex < useLength; propertyIndex++)
+                {
+                    useValues[propertyIndex] = null;
+
+                    var useCell = useRow.GetCell(m_lstPropertyInfos[propertyIndex].UseColumnIndex);
+
+                    if (null == useCell)
+                    {
+                        continue;
+                    }
+
+                    useValues[propertyIndex] = useCell.ToString();
+                }
+
+                try
+                {
+                    //创建对象
+                    var tempObject = Activator.CreateInstance(m_thisType);
+
+                    //属性设值
+                    for (int propertyIndex = 0; propertyIndex < useLength; propertyIndex++)
+                    {
+                        if (null != useValues[propertyIndex])
+                        {
+                            m_lstPropertyInfos[propertyIndex].SetValue(tempObject, useValues[propertyIndex]);
+                        }
+                    }
+
+                    //添加
+                    returnValues.Add(tempObject); 
+                }
+                //异常跳过
+                catch (Exception)
+                {
+                    continue;
+                }
+
+            }
+
+            return returnValues;
         }
 
 

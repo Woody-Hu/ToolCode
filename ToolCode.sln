@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolCode", "ToolCode\ToolCode.csproj", "{7CAF2076-DB12-4B78-A401-64C6C67E7D96}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NPOIUtility", "NPOIUtility\NPOIUtility.csproj", "{B0BEAC2B-6D9A-41FA-9143-62CED6993C29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsol", "TestConsol\TestConsol.csproj", "{AE1D02DD-8CD6-4917-95B3-28A9B7648EA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{B0BEAC2B-6D9A-41FA-9143-62CED6993C29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0BEAC2B-6D9A-41FA-9143-62CED6993C29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0BEAC2B-6D9A-41FA-9143-62CED6993C29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE1D02DD-8CD6-4917-95B3-28A9B7648EA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE1D02DD-8CD6-4917-95B3-28A9B7648EA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE1D02DD-8CD6-4917-95B3-28A9B7648EA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE1D02DD-8CD6-4917-95B3-28A9B7648EA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

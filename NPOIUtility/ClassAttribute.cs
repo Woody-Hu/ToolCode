@@ -15,7 +15,7 @@ namespace NPOIUtility
         /// <summary>
         /// 使用的表索引
         /// </summary>
-        private int? m_sheetIndex = null;
+        private int m_sheetIndex = -1;
 
         /// <summary>
         /// 使用的表名
@@ -25,17 +25,17 @@ namespace NPOIUtility
         /// <summary>
         /// 表头列限制
         /// </summary>
-        private int? m_headerLimitRowIndex = null;
+        private int m_headerLimitRowIndex = -1;
 
         /// <summary>
         /// 使用的数据起始行索引
         /// </summary>
-        private int? m_realUseDataStartRowIndex = null;
+        private int m_realUseDataStartRowIndex = -1;
 
         /// <summary>
         /// 使用的数据起始行索引
         /// </summary>
-        public int? RealUseDataStartRowIndex
+        public int RealUseDataStartRowIndex
         {
             get { return m_realUseDataStartRowIndex; }
             set { m_realUseDataStartRowIndex = value; }
@@ -44,7 +44,7 @@ namespace NPOIUtility
         /// <summary>
         /// 使用的表索引
         /// </summary>
-        public int? SheetIndex
+        public int SheetIndex
         {
             get
             {
@@ -76,7 +76,7 @@ namespace NPOIUtility
         /// <summary>
         /// 表头列限制
         /// </summary>
-        public int? HeaderLimitRowIndex
+        public int HeaderLimitRowIndex
         {
             get
             {

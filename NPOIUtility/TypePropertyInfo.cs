@@ -78,7 +78,7 @@ namespace NPOIUtility
         {
             //获取属性类型
             var propertyType = inputPropertyInfo.PropertyType;
-            return m_useStringType != inputPropertyInfo && null == propertyType.GetMethod(m_useParseMethodName,BindingFlags.Static|BindingFlags.Public);
+            return m_useStringType != inputPropertyInfo || null != propertyType.GetMethod(m_useParseMethodName, new Type[] { m_useStringType });
         }
 
         /// <summary>
@@ -92,18 +92,18 @@ namespace NPOIUtility
             headerRowIndex = 0;
 
             //已赋值列索引
-            if (null != m_usePropertyAttribute.UseColumnIndex)
+            if (0 <= m_usePropertyAttribute.UseColumnIndex)
             {
-                m_useColumnIndex = m_usePropertyAttribute.UseColumnIndex.Value;
+                m_useColumnIndex = m_usePropertyAttribute.UseColumnIndex;
                 return;
             }
             else
             {
                 int useHeaderLimitRowIndex = 0;
 
-                if (null != inputClassAttribute.HeaderLimitRowIndex)
+                if (0 <= inputClassAttribute.HeaderLimitRowIndex)
                 {
-                    useHeaderLimitRowIndex = inputClassAttribute.HeaderLimitRowIndex.Value;
+                    useHeaderLimitRowIndex = inputClassAttribute.HeaderLimitRowIndex;
 
                     //行数保护
                     useHeaderLimitRowIndex = Math.Min(useHeaderLimitRowIndex, inputSheet.LastRowNum);
@@ -113,7 +113,7 @@ namespace NPOIUtility
                         //获取行
                         var tempRow = inputSheet.GetRow(tempRowIndex);
 
-                        for (int tempColumnIndex = 0; tempColumnIndex < tempRow.LastCellNum; tempColumnIndex++)
+                        for (int tempColumnIndex = 0; tempColumnIndex <= tempRow.LastCellNum; tempColumnIndex++)
                         {
                             var tempCell = tempRow.GetCell(tempColumnIndex);
 
@@ -156,7 +156,7 @@ namespace NPOIUtility
                 //设置粘贴方法引用
                 if (null == m_useProperTypeParseMethod)
                 {
-                    m_useProperTypeParseMethod = m_useProperType.GetMethod(m_useParseMethodName, BindingFlags.Static | BindingFlags.Public);
+                    m_useProperTypeParseMethod = m_useProperType.GetMethod(m_useParseMethodName, new Type[] { m_useStringType });
                 }
                 //转换
                 var realValue = m_useProperTypeParseMethod.Invoke(null, new object[] { inputValue });

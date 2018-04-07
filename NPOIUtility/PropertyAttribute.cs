@@ -10,12 +10,12 @@ namespace NPOIUtility
     /// <summary>
     /// 属性特性
     /// </summary>
-    class PropertyAttribute : Attribute
+    public class PropertyAttribute : Attribute
     {
         /// <summary>
         /// 使用的列索引
         /// </summary>
-        private int? m_useColumnIndex = null;
+        private int m_useColumnIndex = -1;
 
         /// <summary>
         /// 使用的列名称
@@ -25,7 +25,7 @@ namespace NPOIUtility
         /// <summary>
         /// 使用的列索引
         /// </summary>
-        public int? UseColumnIndex
+        public int UseColumnIndex
         {
             get
             {
