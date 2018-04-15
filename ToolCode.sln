@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolCode", "ToolCode\ToolCo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NPOIUtility", "NPOIUtility\NPOIUtility.csproj", "{B0BEAC2B-6D9A-41FA-9143-62CED6993C29}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsole", "TestConsole\TestConsole.csproj", "{5993F7F5-5CAD-40B8-8748-69D2B9BC3DC9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B0BEAC2B-6D9A-41FA-9143-62CED6993C29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0BEAC2B-6D9A-41FA-9143-62CED6993C29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0BEAC2B-6D9A-41FA-9143-62CED6993C29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5993F7F5-5CAD-40B8-8748-69D2B9BC3DC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5993F7F5-5CAD-40B8-8748-69D2B9BC3DC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5993F7F5-5CAD-40B8-8748-69D2B9BC3DC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5993F7F5-5CAD-40B8-8748-69D2B9BC3DC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

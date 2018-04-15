@@ -8,17 +8,11 @@ using ZedGraph;
 
 namespace ToolCode
 {
-    public class BarChartMaker
+    /// <summary>
+    /// 柱状图制作工具
+    /// </summary>
+    public class BarChartMaker:BaseChartMaker
     {
-        /// <summary>
-        /// 使用的宽度
-        /// </summary>
-        private int m_useWidth = 500;
-
-        /// <summary>
-        /// 使用的高度
-        /// </summary>
-        private int m_useHight = 500;
 
         /// <summary>
         /// 是否展示Y轴值
@@ -30,10 +24,9 @@ namespace ToolCode
         /// </summary>
         private bool m_ifShowLables = true;
 
-        public  BarChartMaker(int inputWidth = 500,int inputHight = 500,bool ifShowYValue = true,bool ifShowLables = true)
+        public BarChartMaker(int inputWidth = 500, int inputHight = 500, bool ifShowYValue = true, bool ifShowLables = true)
+            : base(inputWidth, inputHight)
         {
-            m_useWidth = inputWidth;
-            m_useHight = inputHight;
             m_ifShowYValue = ifShowYValue;
             m_ifShowLables = ifShowLables;
         }
