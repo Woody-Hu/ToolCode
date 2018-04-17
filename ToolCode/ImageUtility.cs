@@ -52,7 +52,7 @@ namespace ToolCode
                 useBreush = Brushes.Black;
             }
 
-            useGraphic.DrawString(input, useFont, Brushes.PaleVioletRed, new PointF(0.0f, 0.0f));
+            useGraphic.DrawString(input, useFont, useBreush, new PointF(0.0f, 0.0f));
 
             useGraphic.Flush();
 
