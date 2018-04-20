@@ -47,7 +47,7 @@ namespace ToolCode
             tempZ.Width = m_useWidth;
             tempZ.Height = m_useHight;
 
-            SetTitles(xTtitle, title, tempZ);
+            SetTitles(xTtitle, yTitle, title, tempZ);
 
             List<BarItem> lstUseBarITem = new List<BarItem>();
 
@@ -100,7 +100,7 @@ namespace ToolCode
         /// <param name="xTtitle"></param>
         /// <param name="title"></param>
         /// <param name="tempZ"></param>
-        private static void SetTitles(string xTtitle, string title, ZedGraphControl tempZ)
+        private static void SetTitles(string xTtitle,string yTitle, string title, ZedGraphControl tempZ)
         {
             //若需要设标题
             if (!string.IsNullOrWhiteSpace(title))
@@ -125,9 +125,9 @@ namespace ToolCode
             }
 
             //y轴标题
-            if (!string.IsNullOrWhiteSpace(xTtitle))
+            if (!string.IsNullOrWhiteSpace(yTitle))
             {
-                tempZ.GraphPane.YAxis.Title.Text = xTtitle;
+                tempZ.GraphPane.YAxis.Title.Text = yTitle;
                 tempZ.GraphPane.YAxis.Title.IsVisible = true;
             }
             else
