@@ -50,6 +50,7 @@
     <Compile Include="ChartMakers\BarChartMaker.cs" />
     <Compile Include="ChartMakers\BaseChartMaker.cs" />
     <Compile Include="ColorsGeter.cs" />
+    <Compile Include="FileLock.cs" />
     <Compile Include="ImageUtility.cs" />
     <Compile Include="ChartMakers\PieChartMaker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
