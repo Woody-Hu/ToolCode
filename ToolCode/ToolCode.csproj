@@ -53,6 +53,7 @@
     <Compile Include="FileLock.cs" />
     <Compile Include="ImageUtility.cs" />
     <Compile Include="ChartMakers\PieChartMaker.cs" />
+    <Compile Include="MutexLock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SerializeDic.cs" />
     <Compile Include="StrEscapeTool.cs" />

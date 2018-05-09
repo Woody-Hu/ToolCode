@@ -16,8 +16,21 @@ namespace TestConsole
     {
         static void Main(string[] args)
         {
-          
+            MutexLock useLocak = new MutexLock("aaaaa");
 
+            useLocak.LockAction(TestMethod);
+
+            Console.Read();
+
+        }
+
+        private static void TestMethod()
+        {
+            for (int i = 0; i < 100; i++)
+            {
+                System.Threading.Thread.Sleep(100);
+                Console.WriteLine(i.ToString());
+            }
         }
     }
 }
