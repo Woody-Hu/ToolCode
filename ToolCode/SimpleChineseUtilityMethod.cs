@@ -230,7 +230,7 @@ namespace ToolCode
                     return 'W';
 
                 }
-                else if ((indexOfChar >= 52980) && (indexOfChar <= 53640))
+                else if ((indexOfChar >= 52980) && (indexOfChar <= 53688))
                 {
 
                     return 'X';
