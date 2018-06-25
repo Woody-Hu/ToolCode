@@ -22,7 +22,7 @@ namespace ToolCode
         /// <param name="inputContainsSet">使用的容器</param>
         /// <param name="inputComparer">使用的比较Func 第一个参数为从输入中取出的值，第二个参数为从容器中取出的值</param>
         /// <returns>使用的表达式树</returns>
-        public static Func<TClass, bool> GetEqulaOrExpression<TClass, TProperty>
+        public static  Expression< Func<TClass, bool>> GetEqulaOrExpression<TClass, TProperty>
             (Func<TClass, TProperty> inputProperty, IEnumerable<TProperty> inputContainsSet, Func<TProperty, TProperty, bool> inputComparer = null)
         {
             if (null == inputComparer)
@@ -55,7 +55,7 @@ namespace ToolCode
             }
 
 
-            return Expression.Lambda<Func<TClass, bool>>(returnExpression,useInputExpression).Compile();
+            return Expression.Lambda<Func<TClass, bool>>(returnExpression,useInputExpression);
         }
 
         /// <summary>
